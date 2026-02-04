@@ -83,16 +83,20 @@
         }
         .lang-flag.active { opacity: 1; border-color: var(--accent); transform: scale(1.1); }
 
-        .socials { display: flex; gap: 20px; align-items: center; }
+        .socials { display: flex; gap: 20px; align-items: center; position: relative; }
         .social-link { color: var(--text-muted); font-size: 1.3rem; background: none; border: none; cursor: pointer; transition: 0.3s; }
         .social-link:hover { color: var(--accent); }
         
-        #copy-tooltip {
-            position: absolute; top: 50px; right: 0; background: var(--accent); color: white;
+        .copy-tooltip {
+            position: absolute;
+            background: var(--accent);
+            color: white;
             padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
             opacity: 0; pointer-events: none; transition: 0.3s;
         }
-        #copy-tooltip.show { opacity: 1; top: 45px; }
+        .copy-tooltip.show { opacity: 1; }
+        .copy-tooltip--nav { top: 50px; right: 0; }
+        .copy-tooltip--nav.show { top: 45px; }
 
         /* --- HERO (MODIFICADO min-height a 100vh) --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
@@ -191,8 +195,14 @@
 
         /* Footer */
         footer { background: #020617; padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--glass-border); }
+        .footer-cta { position: relative; display: inline-block; }
         .footer-btn { margin-top: 2rem; display: inline-block; padding: 14px 30px; border: 1px solid var(--glass-border); color: white; text-decoration: none; border-radius: 30px; transition: 0.3s; font-weight: 600; }
         .footer-btn:hover { background: var(--accent); border-color: var(--accent); }
+        .copy-tooltip--footer {
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -120%);
+        }
 
         /* Reveal Animation */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
@@ -231,8 +241,8 @@
         <div class="socials">
             <a href="https://github.com/davidpedret" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
             <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-            <button class="social-link" onclick="copyEmail()"><i class="fas fa-envelope"></i></button>
-            <div id="copy-tooltip">Copied!</div>
+            <button class="social-link" onclick="copyEmail('copy-tooltip')"><i class="fas fa-envelope"></i></button>
+            <div id="copy-tooltip" class="copy-tooltip copy-tooltip--nav">Copied!</div>
         </div>
     </nav>
 
@@ -322,7 +332,8 @@
         <div class="footer-cta">
             <h2 id="footer-title">Got a data challenge?</h2>
             <p id="footer-tagline" style="color: var(--text-muted);">Available for collaborations and new opportunities.</p>
-            <a href="mailto:davidpedretlopez@gmail.com" class="footer-btn" id="footer-btn">Let's talk</a>
+            <button class="footer-btn" id="footer-btn" type="button" onclick="copyEmail('footer-tooltip')">Let's talk</button>
+            <div id="footer-tooltip" class="copy-tooltip copy-tooltip--footer">Copied!</div>
         </div>
         <div style="margin-top: 4rem; opacity: 0.4; font-size: 0.8rem;">&copy; 2026 David Pedret. Designed with code.</div>
     </footer>
@@ -415,6 +426,8 @@
             document.getElementById('footer-title').innerText = data.footerTitle;
             document.getElementById('footer-tagline').innerText = data.footerTagline;
             document.getElementById('footer-btn').innerText = data.footerBtn;
+            document.getElementById('copy-tooltip').innerText = data.copyMsg;
+            document.getElementById('footer-tooltip').innerText = data.copyMsg;
 
             // Reiniciar Typewriter
             typeWriterElement.innerHTML = "";
@@ -460,12 +473,13 @@
         setInterval(updateImages, 2500);
 
         // --- 4. COPIAR EMAIL ---
-        function copyEmail() {
+        function copyEmail(tooltipId) {
+            const tooltip = document.getElementById(tooltipId);
             navigator.clipboard.writeText("davidpedretlopez@gmail.com").then(() => {
-                const tool = document.getElementById("copy-tooltip");
-                tool.innerText = langData[currentLang].copyMsg;
-                tool.classList.add("show");
-                setTimeout(() => tool.classList.remove("show"), 2000);
+                if (!tooltip) return;
+                tooltip.innerText = langData[currentLang].copyMsg;
+                tooltip.classList.add("show");
+                setTimeout(() => tooltip.classList.remove("show"), 2000);
             });
         }
     </script>
