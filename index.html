@@ -1,5 +1,6 @@
+--- START OF FILE index.html ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,38 +29,33 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
         h1, h2, h3, .nav-logo, .hero-btn { font-family: 'Space Grotesk', sans-serif; }
 
-        /* --- FONDO --- */
+        /* --- BACKGROUND --- */
         .background-animation {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1;
-            overflow: hidden;
             background: var(--bg-dark);
         }
         .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
             animation: float 20s infinite ease-in-out;
         }
         .orb-1 { width: 400px; height: 400px; background: #1d4ed8; top: -10%; left: -10%; }
-        .orb-2 { width: 500px; height: 500px; background: #4c1d95; bottom: -10%; right: -10%; animation-delay: -5s; }
-        .orb-3 { width: 300px; height: 300px; background: #0ea5e9; top: 40%; left: 40%; animation-delay: -10s; opacity: 0.2; }
+        .orb-2 { width: 500px; height: 500px; background: #4c1d95; bottom: -10%; right: -10%; }
 
-        @keyframes float { 0% { transform: translate(0, 0); } 50% { transform: translate(30px, 50px); } 100% { transform: translate(0, 0); } }
+        @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, 50px); } }
 
         /* --- NAV --- */
         nav {
-            padding: 1.2rem 5%;
+            padding: 0.8rem 5%;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             position: fixed;
             width: 100%;
@@ -69,300 +65,308 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--glass-border);
         }
-        .socials { display: flex; gap: 20px; align-items: center; }
-        .social-link { color: var(--text-muted); font-size: 1.3rem; background: none; border: none; cursor: pointer; transition: 0.3s; }
-        .social-link:hover { color: var(--accent); }
-        
-        #copy-tooltip {
-            position: absolute; top: 50px; right: 0; background: var(--accent); color: white;
-            padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
-            opacity: 0; pointer-events: none; transition: 0.3s;
+        .lang-switch { display: flex; gap: 10px; }
+        .lang-btn { 
+            background: none; border: 1px solid var(--glass-border); 
+            cursor: pointer; padding: 5px; border-radius: 4px; transition: 0.3s;
+            filter: grayscale(1); opacity: 0.6;
         }
-        #copy-tooltip.show { opacity: 1; top: 45px; }
+        .lang-btn.active { filter: grayscale(0); opacity: 1; border-color: var(--accent); }
+        .lang-btn img { width: 24px; display: block; }
+
+        .socials { display: flex; gap: 15px; align-items: center; }
+        .social-link { color: var(--text-muted); font-size: 1.2rem; transition: 0.3s; text-decoration: none; background: none; border: none; cursor: pointer; }
+        .social-link:hover { color: var(--accent); }
 
         /* --- HERO --- */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
         .hero h1 {
-            font-size: 5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -2px;
-            animation: fadeUp 1s ease-out forwards; opacity: 0;
+            font-size: 4rem; font-weight: 700; margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero-subtitle { font-size: 1.5rem; color: var(--accent); font-family: 'Space Grotesk', monospace; margin-bottom: 1.5rem; min-height: 1.5em; }
-        .typewriter-cursor { display: inline-block; width: 2px; height: 1.2em; background-color: var(--accent); margin-left: 5px; vertical-align: middle; animation: blink 1s infinite; }
-        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s ease-out 0.5s forwards; }
+        .hero-subtitle { font-size: 1.3rem; color: var(--accent); font-family: 'Space Grotesk', monospace; margin-bottom: 1rem; }
+        .typewriter-cursor { display: inline-block; width: 2px; height: 1em; background-color: var(--accent); margin-left: 5px; animation: blink 1s infinite; }
+        .hero p { font-size: 1rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
+        .hero-btn { padding: 12px 30px; font-size: 1rem; color: var(--bg-dark); background: var(--accent); text-decoration: none; border-radius: 50px; font-weight: 700; transition: 0.3s; }
 
-        .hero-btn {
-            padding: 15px 40px; font-size: 1.1rem; color: var(--bg-dark); background: var(--accent);
-            text-decoration: none; border-radius: 50px; font-weight: 700; transition: all 0.3s ease;
-            opacity: 0; animation: fadeUp 1s ease-out 0.8s forwards; box-shadow: 0 0 20px var(--accent-glow);
-        }
-        .hero-btn:hover { background: transparent; color: var(--accent); box-shadow: 0 0 40px var(--accent-glow); transform: translateY(-3px); border: 2px solid var(--accent); }
-
-        /* --- SECCIONES --- */
-        section { padding: 6rem 2rem; }
+        /* --- SECTIONS --- */
+        section { padding: 4rem 2rem; }
         .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { font-size: 3rem; margin-bottom: 4rem; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* --- ABOUT --- */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-        .about-text p { margin-bottom: 1.5rem; font-size: 1.1rem; color: #cbd5e1; }
-        .highlight { color: var(--accent); font-weight: 600; }
-        
-        .timeline { border-left: 2px solid var(--glass-border); padding-left: 2rem; margin-top: 2rem; }
-        .timeline-item { position: relative; margin-bottom: 2rem; }
-        .timeline-item::before { content: ''; position: absolute; left: -2.6rem; top: 0.4rem; width: 12px; height: 12px; background: var(--bg-dark); border: 2px solid var(--accent); border-radius: 50%; }
-        .timeline-title { font-weight: 700; color: #fff; font-family: 'Space Grotesk'; }
-        .timeline-desc { font-size: 0.9rem; color: var(--text-muted); }
+        .section-title { font-size: 2.5rem; margin-bottom: 2.5rem; text-align: center; }
 
-        .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .tech-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1.2rem; border-radius: 12px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
-        .tech-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .tech-card i { font-size: 1.8rem; color: var(--accent); }
-        .tech-info h4 { font-weight: 700; margin-bottom: 0.1rem; font-size: 0.95rem; }
-        .tech-info span { font-size: 0.8rem; color: var(--text-muted); }
+        /* --- ABOUT COMPACT --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+        .tech-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .tech-card i { color: var(--accent); font-size: 1.2rem; }
 
-        /* --- PORTFOLIO --- */
+        /* --- PORTFOLIO GRID (3 COLUMNS) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
         .project-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 16px;
             overflow: hidden;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr; /* Más espacio a la imagen */
-            margin-bottom: 6rem;
-            transition: 0.4s ease;
-            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
         }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
         
-        .project-card:hover { border-color: rgba(14, 165, 233, 0.4); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5); }
-        .project-card.reverse { grid-template-columns: 1fr 1.5fr; }
-        .project-card.reverse .project-visual { order: 2; }
-        
-        /* CONTENEDOR DUAL (ARREGLADO) */
         .project-visual {
-            position: relative;
             width: 100%;
-            /* Clave: Aspect Ratio 1/1 para que quepan dos mapas (que son aprox 2/1 cada uno) */
-            aspect-ratio: 1 / 1; 
-            min-height: 500px;
-            background-color: #000;
+            height: 200px;
+            background: #000;
             overflow: hidden;
-            display: flex;       
-            flex-direction: column; 
+            display: flex;
+            flex-direction: column;
         }
+        .project-visual img { width: 100%; height: 50%; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+        .project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-content h3 { font-size: 1.25rem; margin-bottom: 0.8rem; color: #fff; }
+        .project-content p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1; }
         
-        /* IMÁGENES DUALES */
-        .project-visual img {
-            width: 100%; 
-            height: 50%; /* Cada una ocupa exactamente la mitad */
-            /* CLAVE: 'fill' fuerza a que la imagen ocupe todo el recuadro sin hacer zoom */
-            object-fit: fill; 
-            object-position: center;
-            display: block;
-            transition: all 0.4s ease; /* Transición suave para el Hover */
-            border-bottom: 1px solid rgba(255,255,255,0.05); /* Separador sutil */
+        .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.5rem; }
+        .tag { font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; background: rgba(14, 165, 233, 0.1); color: var(--accent); border: 1px solid rgba(14, 165, 233, 0.2); }
+
+        .btn-project { 
+            padding: 10px; background: var(--text-main); color: var(--bg-dark); 
+            text-decoration: none; font-weight: 700; border-radius: 6px; 
+            text-align: center; font-size: 0.85rem; transition: 0.3s;
         }
+        .btn-project:hover { background: var(--accent); color: white; }
 
-        /* EFECTO HOVER */
-        .project-visual img:hover {
-            transform: scale(1.02); /* Zoom muy ligero */
-            filter: brightness(1.1); /* Un poco de brillo */
-            z-index: 10; /* Se pone por encima */
-            box-shadow: 0 0 30px rgba(0,0,0,0.6);
-        }
+        footer { padding: 3rem; text-align: center; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
 
-        .project-content { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
-        .project-content h3 { font-size: 2rem; margin-bottom: 1rem; color: #fff; }
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.5rem 0; }
-        .tag { font-size: 0.75rem; padding: 6px 12px; border-radius: 20px; background: rgba(14, 165, 233, 0.1); color: var(--accent); border: 1px solid rgba(14, 165, 233, 0.2); font-family: 'Space Grotesk'; font-weight: 600; }
-
-        .btn-project { display: inline-flex; align-items: center; gap: 10px; margin-top: auto; padding: 12px 24px; background: var(--text-main); color: var(--bg-dark); text-decoration: none; font-weight: 700; border-radius: 8px; width: fit-content; transition: 0.3s; }
-        .btn-project:hover { background: var(--accent); color: white; box-shadow: 0 0 20px var(--accent-glow); }
-
-        /* Footer */
-        footer { background: #020617; padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--glass-border); }
-        .footer-btn { margin-top: 2rem; display: inline-block; padding: 14px 30px; border: 1px solid var(--glass-border); color: white; text-decoration: none; border-radius: 30px; transition: 0.3s; font-weight: 600; }
-        .footer-btn:hover { background: var(--accent); border-color: var(--accent); }
-
-        /* Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* RESPONSIVE */
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; }
-            .project-card, .project-card.reverse { grid-template-columns: 1fr; }
-            .project-card.reverse .project-visual { order: 0; }
-            /* En móvil ajustamos la altura */
-            .project-visual { min-height: auto; aspect-ratio: 1/1.2; }
-            .hero h1 { font-size: 3.5rem; }
+            .hero h1 { font-size: 2.5rem; }
         }
 
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="background-animation">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <div class="background-animation"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
 
     <nav>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">
+                <img src="https://flagcdn.com/w40/gb.png" alt="English">
+            </button>
+            <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">
+                <img src="https://flagcdn.com/w40/es.png" alt="Español">
+            </button>
+        </div>
         <div class="socials">
             <a href="https://github.com/davidpedret" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
             <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
             <button class="social-link" onclick="copyEmail()"><i class="fas fa-envelope"></i></button>
-            <div id="copy-tooltip">¡Correo copiado!</div>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>David Pedret</h1>
+        <h1 id="hero-title">David Pedret</h1>
         <div class="hero-subtitle"><span id="typewriter"></span><span class="typewriter-cursor"></span></div>
-        <p>Transformando datos complejos en decisiones estratégicas mediante el rigor científico y la programación avanzada.</p>
-        <a href="#projects" class="hero-btn">Ver Portfolio</a>
+        <p id="hero-desc">Transforming complex data into strategic decisions through scientific rigor and advanced programming.</p>
+        <a href="#projects" class="hero-btn" id="hero-btn-text">View Portfolio</a>
     </header>
 
     <section id="about" class="container reveal">
-        <h2 class="section-title">Perfil Profesional</h2>
+        <h2 class="section-title" id="about-title">Professional Profile</h2>
         <div class="about-grid">
             <div class="about-text">
-                <p>Mi background en <span class="highlight">Física</span> me ha dotado de una capacidad única para descomponer problemas complejos. No solo analizo datos; entiendo los sistemas que los generan.</p>
-                <p>Como entusiasta del análisis de datos, canalizo mi curiosidad científica a través de <span class="highlight">Python y el Big Data</span>, desarrollando pipelines robustos y visualizaciones que cuentan la historia oculta tras los números.</p>
-                <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-title">Físico</div><div class="timeline-desc">Formación académica en ciencias físicas, modelado matemático y estadística avanzada.</div></div>
-                    <div class="timeline-item"><div class="timeline-title">Data Analytics</div><div class="timeline-desc">Desarrollo autodidacta especializado en tratamiento de datos masivos y visualización de negocio.</div></div>
-                </div>
+                <p id="about-p1">My background in <span style="color:var(--accent)">Physics</span> has given me a unique ability to deconstruct complex problems. I don't just analyze data; I understand the systems that generate them.</p>
+                <p id="about-p2">As a data enthusiast, I channel scientific curiosity through <span style="color:var(--accent)">Python and Big Data</span>, developing robust pipelines and visualizations.</p>
             </div>
             <div class="tech-grid">
-                <div class="tech-card"><i class="fab fa-python"></i><div class="tech-info"><h4>Python</h4><span>Pandas, NumPy</span></div></div>
-                <div class="tech-card"><i class="fas fa-database"></i><div class="tech-info"><h4>Data Engineering</h4><span>SQL, NetCDF</span></div></div>
-                <div class="tech-card"><i class="fas fa-chart-area"></i><div class="tech-info"><h4>Visualización</h4><span>Tableau, Matplotlib</span></div></div>
-                <div class="tech-card"><i class="fas fa-code-branch"></i><div class="tech-info"><h4>Version Control</h4><span>Git, GitHub</span></div></div>
+                <div class="tech-card"><i class="fab fa-python"></i><div><h4 style="font-size:0.9rem">Python</h4><span style="font-size:0.75rem; color:var(--text-muted)">Pandas, NumPy</span></div></div>
+                <div class="tech-card"><i class="fas fa-database"></i><div><h4 style="font-size:0.9rem">Data Eng</h4><span style="font-size:0.75rem; color:var(--text-muted)">SQL, NetCDF</span></div></div>
+                <div class="tech-card"><i class="fas fa-chart-area"></i><div><h4 style="font-size:0.9rem">Visualization</h4><span style="font-size:0.75rem; color:var(--text-muted)">Tableau, Matplotlib</span></div></div>
+                <div class="tech-card"><i class="fas fa-code-branch"></i><div><h4 style="font-size:0.9rem">Git</h4><span style="font-size:0.75rem; color:var(--text-muted)">Version Control</span></div></div>
             </div>
         </div>
     </section>
 
     <section id="projects" class="container">
-        <h2 class="section-title reveal">Portfolio</h2>
-
-        <!-- PROYECTO 1 -->
-        <article class="project-card reveal">
-            <div class="project-visual">
-                <!-- ARRIBA: Imágenes 1 a 20 -->
-                <img id="img-top" src="img/1.png" alt="Mapa Anomalías Top">
-                <!-- ABAJO: Imágenes 21 a 40 -->
-                <img id="img-bot" src="img/21.png" alt="Mapa Anomalías Bot">
-            </div>
+        <h2 class="section-title reveal" id="projects-title">Portfolio</h2>
+        <div class="projects-grid">
             
-            <div class="project-content">
-                <h3>Estudio del Modo Ecuatorial</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                    Caracterización observacional del <strong>Atlantic Niño</strong> comparándolo sistemáticamente con el <strong>ENSO</strong> (Pacífico). Se procesaron bases de datos climáticas (HadISST, ERSST) entre 1960-2020.
-                </p>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                    El proyecto define una <strong>metodología robusta</strong> para filtrar la tendencia del calentamiento global y detectar eventos estacionales, demostrando que el modo Atlántico es más débil y local frente a la dominancia global del ENSO.
-                </p>
-                <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">NetCDF</span>
-                    <span class="tag">Cartopy</span>
-                    <span class="tag">Análisis Estadístico</span>
+            <!-- PROJECT 1 -->
+            <article class="project-card reveal">
+                <div class="project-visual">
+                    <img id="img-top" src="img/1.png" alt="Map top">
+                    <img id="img-bot" src="img/21.png" alt="Map bot">
                 </div>
-                <a href="https://github.com/davidpedret/Atlanic-Equatorial-Mode-Study/tree/main" target="_blank" class="btn-project"><i class="fab fa-github"></i> Ver Proyecto</a>
-            </div>
-        </article>
+                <div class="project-content">
+                    <h3 id="p1-title">Equatorial Mode Study</h3>
+                    <p id="p1-desc">Observational characterization of the Atlantic Niño compared to ENSO using HadISST & ERSST data (1960-2020).</p>
+                    <div class="tags">
+                        <span class="tag">Python</span><span class="tag">NetCDF</span><span class="tag">Cartopy</span>
+                    </div>
+                    <a href="https://github.com/davidpedret/Atlanic-Equatorial-Mode-Study" target="_blank" class="btn-project" id="p1-btn">View Project</a>
+                </div>
+            </article>
 
-        <!-- PROYECTO 2 -->
-        <article class="project-card reverse reveal">
-            <div class="project-visual" style="display: flex; align-items: center; justify-content: center; background: #0f172a;">
-                <i class="fas fa-chart-pie" style="font-size: 6rem; color: var(--accent); opacity: 0.5;"></i>
-            </div>
-            <div class="project-content">
-                <h3>Blockchain Analytics Dashboard</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                    Infraestructura de datos para la DAO Nox Beyond. Extracción automatizada de datos on-chain vía APIs, transformación ETL y visualización en tiempo real de activos financieros digitales.
-                </p>
-                <div class="tags">
-                    <span class="tag">SQL</span>
-                    <span class="tag">Tableau</span>
-                    <span class="tag">API Integration</span>
-                    <span class="tag">Automation</span>
+            <!-- PROJECT 2 -->
+            <article class="project-card reveal">
+                <div class="project-visual" style="background:#0f172a; justify-content:center; align-items:center;">
+                    <i class="fas fa-chart-pie" style="font-size:3rem; color:var(--accent)"></i>
                 </div>
-                <a href="#" class="btn-project"><i class="fas fa-external-link-alt"></i> Ver Proyecto</a>
-            </div>
-        </article>
+                <div class="project-content">
+                    <h3 id="p2-title">Blockchain Dashboard</h3>
+                    <p id="p2-desc">ETL infrastructure for Nox Beyond DAO. Real-time visualization of digital financial assets via APIs.</p>
+                    <div class="tags">
+                        <span class="tag">SQL</span><span class="tag">Tableau</span><span class="tag">APIs</span>
+                    </div>
+                    <a href="#" class="btn-project" id="p2-btn">View Project</a>
+                </div>
+            </article>
+
+            <!-- PROJECT 3 (Placeholder for Grid) -->
+            <article class="project-card reveal">
+                <div class="project-visual" style="background:#1e293b; justify-content:center; align-items:center;">
+                    <i class="fas fa-microchip" style="font-size:3rem; color:var(--text-muted)"></i>
+                </div>
+                <div class="project-content">
+                    <h3 id="p3-title">Statistical Modeling</h3>
+                    <p id="p3-desc">Advanced predictive analysis using Monte Carlo simulations for physical system behaviors.</p>
+                    <div class="tags">
+                        <span class="tag">Statistics</span><span class="tag">Scipy</span><span class="tag">Modeling</span>
+                    </div>
+                    <a href="#" class="btn-project" id="p3-btn">Soon</a>
+                </div>
+            </article>
+
+        </div>
     </section>
 
     <footer class="reveal">
-        <div class="footer-cta">
-            <h2>¿Tienes un desafío de datos?</h2>
-            <p style="color: var(--text-muted);">Estoy disponible para colaboraciones y nuevas oportunidades.</p>
-            <a href="mailto:davidpedretlopez@gmail.com" class="footer-btn">Hablemos</a>
-        </div>
-        <div style="margin-top: 4rem; opacity: 0.4; font-size: 0.9rem;">&copy; 2026 David Pedret. Designed with code.</div>
+        <h2 id="footer-title">Let's work together</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;" id="footer-desc">Available for data challenges and collaborations.</p>
+        <a href="mailto:davidpedretlopez@gmail.com" class="hero-btn">Hablemos</a>
     </footer>
 
     <script>
-        // --- 1. TYPEWRITER ---
-        const textToType = "Físico & Data Analysis Enthusiast";
+        // --- TRANSLATIONS ---
+        const translations = {
+            en: {
+                typewriter: "Physicist & Data Enthusiast",
+                heroBtn: "View Portfolio",
+                heroDesc: "Transforming complex data into strategic decisions through scientific rigor and advanced programming.",
+                aboutTitle: "Professional Profile",
+                aboutP1: "My background in <span style='color:var(--accent)'>Physics</span> has given me a unique ability to deconstruct complex problems. I don't just analyze data; I understand the systems behind them.",
+                aboutP2: "As a data enthusiast, I channel scientific curiosity through <span style='color:var(--accent)'>Python and Big Data</span>.",
+                projectsTitle: "Portfolio",
+                p1Title: "Equatorial Mode Study",
+                p1Desc: "Observational characterization of the Atlantic Niño compared to ENSO using HadISST & ERSST data.",
+                p1Btn: "View Project",
+                p2Title: "Blockchain Dashboard",
+                p2Desc: "ETL infrastructure for Nox Beyond DAO. Real-time visualization of digital assets via APIs.",
+                p2Btn: "View Project",
+                p3Title: "Statistical Modeling",
+                p3Desc: "Advanced predictive analysis using Monte Carlo simulations for physical systems.",
+                p3Btn: "Soon",
+                footerTitle: "Let's work together",
+                footerDesc: "Available for data challenges and collaborations."
+            },
+            es: {
+                typewriter: "Físico & Entusiasta del Análisis de Datos",
+                heroBtn: "Ver Portfolio",
+                heroDesc: "Transformando datos complejos en decisiones estratégicas mediante rigor científico y programación avanzada.",
+                aboutTitle: "Perfil Profesional",
+                aboutP1: "Mi formación en <span style='color:var(--accent)'>Física</span> me ha dotado de una capacidad única para descomponer problemas. No solo analizo datos; entiendo los sistemas que los generan.",
+                aboutP2: "Canalizo mi curiosidad científica a través de <span style='color:var(--accent)'>Python y Big Data</span>, desarrollando visualizaciones robustas.",
+                projectsTitle: "Portfolio",
+                p1Title: "Estudio del Modo Ecuatorial",
+                p1Desc: "Caracterización del Niño Atlántico comparado con ENSO usando datos de HadISST y ERSST.",
+                p1Btn: "Ver Proyecto",
+                p2Title: "Dashboard Blockchain",
+                p2Desc: "Infraestructura ETL para Nox Beyond DAO. Visualización en tiempo real de activos vía APIs.",
+                p2Btn: "Ver Proyecto",
+                p3Title: "Modelado Estadístico",
+                p3Desc: "Análisis predictivo avanzado mediante simulaciones Monte Carlo para sistemas físicos.",
+                p3Btn: "Próximamente",
+                footerTitle: "¿Trabajamos juntos?",
+                footerDesc: "Disponible para desafíos de datos y colaboraciones."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            // Actualizar textos
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('hero-btn-text').innerText = t.heroBtn;
+            document.getElementById('about-title').innerText = t.aboutTitle;
+            document.getElementById('about-p1').innerHTML = t.aboutP1;
+            document.getElementById('about-p2').innerHTML = t.aboutP2;
+            document.getElementById('projects-title').innerText = t.projectsTitle;
+            document.getElementById('p1-title').innerText = t.p1Title;
+            document.getElementById('p1-desc').innerText = t.p1Desc;
+            document.getElementById('p1-btn').innerText = t.p1Btn;
+            document.getElementById('p2-title').innerText = t.p2Title;
+            document.getElementById('p2-desc').innerText = t.p2Desc;
+            document.getElementById('p2-btn').innerText = t.p2Btn;
+            document.getElementById('p3-title').innerText = t.p3Title;
+            document.getElementById('p3-desc').innerText = t.p3Desc;
+            document.getElementById('p3-btn').innerText = t.p3Btn;
+            document.getElementById('footer-title').innerText = t.footerTitle;
+            document.getElementById('footer-desc').innerText = t.footerDesc;
+
+            // Reiniciar Typewriter
+            typeWriterElement.innerHTML = "";
+            i = 0;
+            typeWriter();
+
+            // Actualizar botones flags
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        }
+
+        // --- TYPEWRITER ---
         const typeWriterElement = document.getElementById('typewriter');
         let i = 0;
         function typeWriter() {
-            if (i < textToType.length) { typeWriterElement.innerHTML += textToType.charAt(i); i++; setTimeout(typeWriter, 100); }
+            const fullText = translations[currentLang].typewriter;
+            if (i < fullText.length) {
+                typeWriterElement.innerHTML += fullText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
         }
-        window.addEventListener('load', () => setTimeout(typeWriter, 500));
+        window.onload = () => setTimeout(typeWriter, 500);
 
-        // --- 2. SCROLL REVEAL ---
-        const reveals = document.querySelectorAll('.reveal');
+        // --- SCROLL REVEAL ---
         const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            reveals.forEach((reveal) => {
-                if (reveal.getBoundingClientRect().top < windowHeight - 100) reveal.classList.add('active');
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
             });
         };
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
 
-        // --- 3. DUAL SLIDESHOW OPTIMIZADO ---
-        const totalImages = 40;
-        const imgTop = document.getElementById('img-top');
-        const imgBot = document.getElementById('img-bot');
-        let counter = 1; 
+        // --- DUAL SLIDESHOW ---
+        let counter = 1;
+        setInterval(() => {
+            counter = counter >= 20 ? 1 : counter + 1;
+            document.getElementById('img-top').src = `img/${counter}.png`;
+            document.getElementById('img-bot').src = `img/${counter + 20}.png`;
+        }, 2500);
 
-        // Precarga de imágenes para que no parpadee
-        const images = [];
-        function preloadImages() {
-            for (let j = 1; j <= totalImages; j++) {
-                const img = new Image();
-                img.src = `img/${j}.png`;
-                images.push(img);
-            }
-        }
-        preloadImages();
-
-        function updateImages() {
-            counter++;
-            if (counter > 20) counter = 1; // Bucle de 1 a 20
-            
-            // Imagen Arriba: 1 a 20
-            imgTop.src = images[counter - 1].src;
-            
-            // Imagen Abajo: 21 a 40 (counter + 20)
-            imgBot.src = images[(counter + 20) - 1].src;
-        }
-
-        setInterval(updateImages, 2000);
-
-        // --- 4. COPIAR EMAIL ---
         function copyEmail() {
-            navigator.clipboard.writeText("davidpedretlopez@gmail.com").then(() => {
-                const tool = document.getElementById("copy-tooltip");
-                tool.classList.add("show");
-                setTimeout(() => tool.classList.remove("show"), 2000);
-            });
+            navigator.clipboard.writeText("davidpedretlopez@gmail.com");
+            alert("Email copied!");
         }
     </script>
 </body>
